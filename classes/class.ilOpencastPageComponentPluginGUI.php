@@ -257,7 +257,7 @@ class ilOpencastPageComponentPluginGUI extends ilPageComponentPluginGUI
      */
     public function insert()
     {
-        $this->addToolbar();
+        //$this->addToolbar();
         $table = $this->getTable();
         self::output()->output($table->getHTML());
 
