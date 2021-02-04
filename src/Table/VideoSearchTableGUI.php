@@ -4,6 +4,7 @@ use ILIAS\DI\Container;
 use srag\CustomInputGUIs\OpencastPageComponent\TableGUI\TableGUI;
 use srag\DIC\OpencastPageComponent\Exception\DICException;
 use srag\Plugins\Opencast\Model\API\Event\EventRepository;
+use srag\Plugins\Opencast\Model\API\Series\SeriesRepository;
 
 /**
  * Class VideoSearchTableGUI
@@ -168,10 +169,11 @@ class VideoSearchTableGUI extends TableGUI
     {
         // the api doesn't deliver a max count, so we fetch (limit + 1) to see if there should be a 'next' page
         try {
+            $common_idp = xoctConf::getConfig(xoctConf::F_COMMON_IDP);
             $events = (array) $this->event_repository->getFiltered(
                 $this->buildFilterArray(),
-                xoctUser::getInstance($this->dic->user())->getIdentifier(),
-                [],
+                $common_idp ? xoctUser::getInstance($this->dic->user())->getIdentifier() : '',
+                $common_idp ? [] : [xoctUser::getInstance($this->dic->user())->getUserRoleName()],
                 $this->getOffset(),
                 $this->getLimit() + 1
             );
@@ -226,7 +228,7 @@ class VideoSearchTableGUI extends TableGUI
         $title = $this->addFilterItemByMetaType(self::F_TEXTFILTER, self::FILTER_TEXT, false, self::plugin()->translate(self::F_TEXTFILTER));
         $this->filter[self::F_TEXTFILTER] = $title->getValue();
 
-        $series = $this->addFilterItemByMetaType(self::F_SERIES, self::FILTER_SELECT, false, $this->opencast_plugin->txt('series_channel_id'));
+        $series = $this->addFilterItemByMetaType(self::F_SERIES, self::FILTER_SELECT, false, $this->opencast_plugin->txt('event_series'));
         $series->setOptions($this->getSeriesFilterOptions());
         $this->filter[self::F_SERIES] = $series->getValue();
 
@@ -269,7 +271,9 @@ class VideoSearchTableGUI extends TableGUI
     protected function getSeriesFilterOptions()
     {
         $series_options = ['' => '-'];
-        foreach (xoctSeries::getAllForUser(xoctUser::getInstance($this->dic->user())->getUserRoleName()) as $serie) {
+        $xoctUser = xoctUser::getInstance($this->dic->user());
+        (new SeriesRepository())->getOwnSeries($xoctUser);
+        foreach (xoctSeries::getAllForUser($xoctUser->getUserRoleName()) as $serie) {
             $series_options[$serie->getIdentifier()] = $serie->getTitle() . ' (...' . substr($serie->getIdentifier(), -4, 4) . ')';
         }
 
