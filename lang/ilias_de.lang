@@ -1,4 +1,4 @@
-cmd_insert#:#Video aus Opencast einfügen
+cmd_insert#:#Video aus Switchcast einfügen
 config_configuration#:#Konfiguration
 config_configuration_saved#:#Konfiguration gespeichert
 config_save#:#Speichern
@@ -14,7 +14,7 @@ msg_failed_loading_events#:#Beim Laden der Events ist ein Fehler aufgetreten: %s
 msg_created#:#Upload abgeschlossen. Hinweis: Es kann einige Minuten dauern, bis das Video verarbeitet wurde und in der Liste unten erscheint.
 msg_added#:#Video wurde erfolgreich zur Seite hinzugefügt.
 textFilter#:#Textfilter
-table_title#:#Bestehendes Video aus Opencast einfügen
+table_title#:#Bestehendes Video aus Switchcast einfügen
 btn_upload#:#Neues Video hochladen
 responsiveness#:#Responsive
 responsiveness_info#:#Wenn aktiv, wird die oben definierte Grösse als Maximalgrösse verwendet. Bei weniger Platz (z.B. auf mobilen Geräte) wird das Video kleiner dargestellt.
