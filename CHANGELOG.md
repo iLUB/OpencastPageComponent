@@ -1,9 +1,21 @@
 # Changelog
 
+## [1.6.0]
+- Change: ILIAS 7 compatibility
+- Change: dropped ILIAS 5.4 compatibility
+
+## [1.5.2]
+- Improvement: slider 100% is now two times the default width
+- Change: lang var for width/height input
+- Fix: slider got stuck when the vertical scrollbar appeared
+
+## [1.5.1]
+- Change: changed table behavior for InteractiveVideo plugin 
+
 ## [1.5.0]
 - Fix: avoid missing own series in filter and upload form (dynamically add producer)
 - Fix: styling didn't apply in learning modules
-- Compatability: OpenCast plugin >=v3.5.0
+- Compatibility: OpenCast plugin >=v3.5.0
 
 ## [1.4.0]
 - Feature: responsiveness and positioning
