@@ -2,7 +2,9 @@
 
 ## [1.6.0]
 - Change: ILIAS 7 compatibility
-- Change: dropped ILIAS 5.4 compatibility
+
+## [1.5.3]
+- Fix: videos in previews (e.g. in a Blog's admin view) were not playable
 
 ## [1.5.2]
 - Improvement: slider 100% is now two times the default width
